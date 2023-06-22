@@ -1,4 +1,7 @@
+using HTTTest.ApplicationCore.Interfaces;
 using HTTTest.Infrastructure.Data;
+using HTTTest.Web.Interfaces;
+using HTTTest.Web.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 #region Configuration DbContext
 builder.Services.AddDbContext<HTTTestContext>(context =>
             context.UseSqlServer(builder.Configuration.GetConnectionString("HTTTestConnection")));
+#endregion
+
+#region Configure AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+#endregion
+
+#region Configure Own Services
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EFRepository<>));
+builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
+builder.Services.AddScoped(typeof(IProductService), typeof(ProductService));
 #endregion
 
 // Add services to the container.
