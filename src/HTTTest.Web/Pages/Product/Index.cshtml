@@ -3,3 +3,24 @@
 @{
     ViewData["Title"] = "Products";
 }
+
+
+<div class="container">
+    <div class="row mb-2 mb-5">
+        <div class="col-md-2">
+            <div class="badge bg-info w-100 text-center mb-3 fs-4">Categories</div>
+            <ul class="nav nav-pills flex-column mb-5 fs-6 fw-normal">
+                @foreach (var item in Model.ProductModel.Categories!)
+                {
+                    <li class="nav-item">
+                        <a class="nav-link @item.ActiveLink" asp-page="Index" asp-route-categoryId="@item.Id">@item.Name</a>
+                    </li>
+                }
+            </ul>           
+        </div>
+        <div class="col-md-10">
+            <partial name="ProductPartials/_ProductCardPartial"
+                     model="@Model.ProductModel.Products" />
+        </div>
+    </div>
+</div>

@@ -38,6 +38,7 @@ namespace HTTTest.Web.Services
 
             var vm = new ProductIndexViewModel()
             {
+                Categories = _mapper.Map<List<CategoryViewModel>>(categories),
                 Products = _mapper.Map<List<ProductViewModel>>(entities).Chunk(size: 3)
             };
             return vm;
