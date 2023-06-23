@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ProductViewModel[]>
+
+<section>
+    <div class="container">
+        @foreach (var chunkedProducts in Model)
+        {
+            <div class="row mb-3">
+                @foreach (var item in chunkedProducts)
+                {
+                    <div class="col-md-3">
+                        <div class="card h-100 mb-10 border-2 rounded-3" style="width: 240px">
+                            <div class="card-body">                           
+                                <img src="/@item.PictureUrl" class="card-img-top" alt="photo">
+                                <h6 class="card-title">@item.Name</h6>
+                                <p class="card-text">@item.Description</p>                         
+                            </div>
+                            <div class="card-footer d-flex justify-content-around">
+                                <div class="card-text">
+                                    <p class="text-primary">Price-&#36;@item.Price</p>
+                                </div>
+                                <div>
+                                    <p style="color:blue">Weight-@item.Weight @item.Measure</p>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                }        
+            </div>
+        }
+    </div>
+</section>
